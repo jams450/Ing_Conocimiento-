@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Ing | Conocimiento</title>
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <link rel="stylesheet" href="../../lib/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../lib/treant-js-master/Treant.css" type="text/css"/>
+</head>
+
+<body>
+  <h1 class="text-center">Ingenieria del Conocimiento</h1>
+  <h3 class="text-center">Calculadora de Probabilidades</h3>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6 text-center">
+          <h3>Arbol</h3>
+          <div id="arbol">
+
+          </div>
+          <h3>JSON</h3>
+          <div id="json">
+
+          </div>
+      </div>
+      <div class="col-md-6 text-center">
+          <h3>Probabilidades</h3>
+          <div class="row">
+
+            <div class="col-md-6">
+              <label>Opción A</label>
+              <select class="" name="" id="opc_a">
+                <option value="1">P(R|A)</option>
+                <option value="2">P(T|A)</option>
+                <option value="3">P(A)</option>
+                <option value="4">P(AB)</option>
+                <option value="5">P(A|B)</option>
+              </select>
+              <input type="button" class="btn btn-default" name="enviar" id="calca" value="Calcular">
+              <br>
+              <br>
+              <div id="proba_a">
+
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <label>Opción B</label>
+              <select class="" name="" id="opc_b">
+                <option value="1">P(R|B)</option>
+                <option value="2">P(T|B)</option>
+                <option value="3">P(B)</option>
+                <option value="4">P(BA)</option>
+                <option value="5">P(B|A)</option>
+              </select>
+              <input type="button" class="btn btn-default" name="enviar" id="calcb" value="Calcular">
+              <br>
+              <br>
+              <div id="proba_b">
+
+              </div>
+            </div>
+          </div>
+
+
+      </div>
+    </div>
+  </div>
+
+</body>
+
+<script src="../../lib/jquery/jquery.min.js"></script>
+<script src="../../lib/bootstrap/js/bootstrap.min.js"></script>
+<script src="../../js/probabilidad.js"></script>
+<script src="../../lib/treant-js-master/raphael.js"></script>
+<script src="../../lib/treant-js-master/Treant.js"></script>
+</body>
+</html>
