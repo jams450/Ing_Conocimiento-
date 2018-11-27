@@ -97,18 +97,35 @@ $('#calca').click(function(e){
 
       break;
 
-    default:
-
   }
 });
 
 $('#calcb').click(function(e){
   var opc=$('#opc_b').val();
+  var totalb=ajax.ventas.tienda.B.productos.Radio;
+  totalb+=ajax.ventas.tienda.B.productos.TV;
   switch (opc) {
-    case expression:
+    case '1':
+      var proba=ajax.ventas.tienda.B.productos.Radio/totalb;
+      $('#proba_b').text("Resultado: ("+ajax.ventas.tienda.B.productos.Radio+"/"+totalb+") = " +proba);
+      break;
+
+    case '2':
+      var proba=ajax.ventas.tienda.B.productos.TV/totalb;
+      $('#proba_b').text("Resultado: ("+ajax.ventas.tienda.B.productos.TV+"/"+totalb+") = " +proba);
+      break;
+
+    case '3':
+      var proba=totalb/ajax.ventas.total;
+      $('#proba_b').text("Resultado: ("+totalb+"/"+ajax.ventas.total+") = " +proba);
+      break;
+
+    case '4':
 
       break;
-    default:
 
+    case '5':
+
+      break;
   }
 });
