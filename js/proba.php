@@ -1,4 +1,5 @@
 <?php
+
   $conexion= new mysqli('localhost','root','1234','ing_cono');
   $conexion->set_charset("utf8");
 
@@ -16,20 +17,21 @@
   $total=0;
   while ($res = $producto->fetch_assoc()) {
     $total+=$res['Contador'];
-
     //saber que tienda
     for ($i=0; $i < count($tienda); $i++) {
       if ($tienda[$i]['tienda']==$res['tienda']) {
         //saber que producto
         for ($j=0; $j < count($productos); $j++) {
           if ($productos[$j]['producto']==$res['producto']) {
-            $todos['ventas']['tienda'][$tienda[$i]['tienda']]['productos'][$productos[$j]['producto']]+=$res['Contador'];
+            $t=$tienda[$i]['tienda'];
+            $p=$productos[$j]['producto'];
+            $todos['ventas']['tienda'][$t]['productos'][$p]=$res['Contador'];
           }
         }
       }
     }
   }
-  
+
   $todos['ventas']['total']=$total;
   $conexion->close();
   die(json_encode($todos));

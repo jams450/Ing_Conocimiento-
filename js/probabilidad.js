@@ -11,11 +11,11 @@ $(document).ready(function() {
         ajax=data;
         $('#json').text(JSON.stringify(data));
 
-        var totala=data.ventas.tienda.A.productos.Radio;
-        totala+=data.ventas.tienda.A.productos.TV;
+        var totala=parseFloat(data.ventas.tienda.A.productos.Radio);
+        totala+=parseFloat(data.ventas.tienda.A.productos.TV);
 
-        var totalb=data.ventas.tienda.B.productos.Radio;
-        totalb+=data.ventas.tienda.B.productos.TV;
+        var totalb=parseFloat(data.ventas.tienda.B.productos.Radio);
+        totalb+=parseFloat(data.ventas.tienda.B.productos.TV);
         //crear Arbol
         simple_chart_config = {
             chart: {
@@ -70,8 +70,11 @@ $(document).ready(function() {
 
 $('#calca').click(function(e){
   var opc=$('#opc_a').val();
-  var totala=ajax.ventas.tienda.A.productos.Radio;
-  totala+=ajax.ventas.tienda.A.productos.TV;
+  var totala=parseFloat(ajax.ventas.tienda.A.productos.Radio);
+  totala+=parseFloat(ajax.ventas.tienda.A.productos.TV);
+
+  var totalb=parseFloat(ajax.ventas.tienda.B.productos.Radio);
+  totalb+=parseFloat(ajax.ventas.tienda.B.productos.TV);
 
   switch (opc) {
     case '1':
@@ -90,10 +93,41 @@ $('#calca').click(function(e){
       break;
 
     case '4':
+      //P(AR)
+      var proba=ajax.ventas.tienda.A.productos.Radio/totala;
+      var proba2=totala/ajax.ventas.total;
+      //P(BR)
+      var proba3=ajax.ventas.tienda.B.productos.Radio/totalb;
+      var proba4=totalb/ajax.ventas.total;
 
+      $('#proba_a').text("Resultado: = " +(proba*proba2)+(proba3+proba4));
       break;
 
     case '5':
+      //P(AR)
+      var proba=ajax.ventas.tienda.A.productos.TV/totala;
+      var proba2=totala/ajax.ventas.total;
+      //P(BR)
+      var proba3=ajax.ventas.tienda.B.productos.TV/totalb;
+      var proba4=totalb/ajax.ventas.total;
+
+      $('#proba_a').text("Resultado: = " +(proba*proba2)+(proba3+proba4));
+
+      break;
+    case '6':
+      //P(AR)
+      var proba=ajax.ventas.tienda.A.productos.TV/totala;
+      var proba2=totala/ajax.ventas.total;
+
+      $('#proba_a').text("Resultado: = " +(proba*proba2));
+
+      break;
+    case '7':
+      //P(AR)
+      var proba=ajax.ventas.tienda.A.productos.Radio/totala;
+      var proba2=totala/ajax.ventas.total;
+
+      $('#proba_a').text("Resultado: = " +(proba*proba2));
 
       break;
 
@@ -102,8 +136,11 @@ $('#calca').click(function(e){
 
 $('#calcb').click(function(e){
   var opc=$('#opc_b').val();
-  var totalb=ajax.ventas.tienda.B.productos.Radio;
-  totalb+=ajax.ventas.tienda.B.productos.TV;
+  var totalb=parseFloat(ajax.ventas.tienda.B.productos.Radio);
+  totalb+=parseFloat(ajax.ventas.tienda.B.productos.TV);
+  var totala=parseFloat(ajax.ventas.tienda.A.productos.Radio);
+  totala+=parseFloat(ajax.ventas.tienda.A.productos.TV);
+
   switch (opc) {
     case '1':
       var proba=ajax.ventas.tienda.B.productos.Radio/totalb;
@@ -120,12 +157,43 @@ $('#calcb').click(function(e){
       $('#proba_b').text("Resultado: ("+totalb+"/"+ajax.ventas.total+") = " +proba);
       break;
 
-    case '4':
+      case '4':
+        //P(AR)
+        var proba=ajax.ventas.tienda.A.productos.Radio/totala;
+        var proba2=totala/ajax.ventas.total;
+        //P(BR)
+        var proba3=ajax.ventas.tienda.B.productos.Radio/totalb;
+        var proba4=totalb/ajax.ventas.total;
 
-      break;
+        $('#proba_b').text("Resultado: = " +(proba*proba2)+(proba3+proba4));
+        break;
 
-    case '5':
+      case '5':
+        //P(AR)
+        var proba=ajax.ventas.tienda.A.productos.TV/totala;
+        var proba2=totala/ajax.ventas.total;
+        //P(BR)
+        var proba3=ajax.ventas.tienda.B.productos.TV/totalb;
+        var proba4=totalb/ajax.ventas.total;
 
-      break;
+        $('#proba_b').text("Resultado: = " +(proba*proba2)+(proba3+proba4));
+
+        break;
+      case '6':
+        //P(AR)
+        var proba=ajax.ventas.tienda.B.productos.TV/totalb;
+        var proba2=totalb/ajax.ventas.total;
+
+        $('#proba_b').text("Resultado: = " +(proba*proba2));
+
+        break;
+      case '7':
+        //P(AR)
+        var proba=ajax.ventas.tienda.B.productos.Radio/totalb;
+        var proba2=totalb/ajax.ventas.total;
+
+        $('#proba_b').text("Resultado: = " +(proba*proba2));
+
+        break;
   }
 });
